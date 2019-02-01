@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 /**
  * @author natancardosodev
  *
@@ -26,6 +29,11 @@ public class Cidade implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	// Proteção para referência cíclica na serialização Json
+	// necessário quando ambos tem conhecimento do outro
+	// mas apenas um terá o dominio
+	// no caso cidade que tem um endereco
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;
