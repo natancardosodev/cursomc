@@ -14,8 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.natan.cursomc.domain.enums.TipoCliente;
 
 /**
@@ -36,7 +35,6 @@ public class Cliente implements Serializable{
 	// O enum TipoCliente será armazenado como integer 
 	private Integer tipo;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")
 	private List<Endereco> endereco = new ArrayList<>();
 	
@@ -47,7 +45,12 @@ public class Cliente implements Serializable{
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
-	@JsonBackReference
+	// Proteção para referência cíclica na serialização Json
+	// Inserir essa anotacao no lado que 
+	// quer que NÃO venha os objetos associados
+	// necessário quando ambos tem conhecimento do outro
+	// mas apenas um terá o dominio
+	@JsonIgnore
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	

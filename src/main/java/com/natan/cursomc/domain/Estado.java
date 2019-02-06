@@ -14,7 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author natancardosodev
@@ -30,7 +30,12 @@ public class Estado implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@JsonBackReference
+	// Proteção para referência cíclica na serialização Json
+	// Inserir essa anotacao no lado que 
+	// quer que NÃO venha os objetos associados
+	// necessário quando ambos tem conhecimento do outro
+	// mas apenas um terá o dominio
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="estado")
 	private List<Cidade> cidades = new ArrayList<>();
 	

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author natancardosodev
@@ -32,8 +32,12 @@ public class Endereco implements Serializable{
 	private String bairro;
 	private String cep;
 	
-	// aqui não pode referenciar
-	@JsonBackReference
+	// Proteção para referência cíclica na serialização Json
+	// Inserir essa anotacao no lado que 
+	// quer que NÃO venha os objetos associados
+	// necessário quando ambos tem conhecimento do outro
+	// mas apenas um terá o dominio
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

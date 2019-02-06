@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -33,8 +32,12 @@ public class Produto implements Serializable{
 	private String nome;
 	private Double preco;
 	
-	// Omite a busca, pois do outro lado já foi feito
-	@JsonBackReference
+	// Proteção para referência cíclica na serialização Json
+	// Inserir essa anotacao no lado que 
+	// quer que NÃO venha os objetos associados
+	// necessário quando ambos tem conhecimento do outro
+	// mas apenas um terá o dominio
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name="produto_id"),
@@ -70,7 +73,6 @@ public class Produto implements Serializable{
 			// será add o pedido associado a ele na lista
 		}
 		return lista;
-		
 	}
 
 	public Integer getId() {
