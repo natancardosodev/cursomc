@@ -1,11 +1,14 @@
 package com.natan.cursomc.domain;
 
+import javax.persistence.Entity;
+
 import com.natan.cursomc.domain.enums.EstadoPagamento;
 
 /**
  * @author natancardosodev
  *
  */
+@Entity
 public class PagamentoComCartao extends Pagamento{
 
 	private static final long serialVersionUID = 1L;

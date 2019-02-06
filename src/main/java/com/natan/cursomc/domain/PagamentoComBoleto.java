@@ -2,12 +2,15 @@ package com.natan.cursomc.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.natan.cursomc.domain.enums.EstadoPagamento;
 
 /**
  * @author natancardosodev
  *
  */
+@Entity
 public class PagamentoComBoleto extends Pagamento {
 	
 	// não precisa do hashCodeEquals, pois a referência é feita pelo pai
