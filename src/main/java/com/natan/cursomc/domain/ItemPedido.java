@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author natancardosodev
  *
@@ -17,6 +19,7 @@ public class ItemPedido implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	// id embutido em um tipo auxiliar
 	@EmbeddedId
 	// atributo composto
@@ -40,6 +43,8 @@ public class ItemPedido implements Serializable{
 	}
 	
 	// Getter de pedido id para ter acesso a ela fora da classe original
+	@JsonIgnore
+	// tudo que tem get ele entende que tem q serializar, então vamos ignorar
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
