@@ -1,7 +1,8 @@
 # Projeto Spring Boot com Angular e Ionic - Udemy
 
 > Esse repositório é resultado do
-> aprendizado de um curso pela Udemy. 
+> aprendizado de um curso pela Udemy.
+> **Projeto em andamento, não finalizado** 
 
 O projeto que está em desenvolvimento terá construção de login, cadastro de usuário, fluxo completo de navegação de carrinho de compras, fluxo de fechamento de pedido, tela de perfil de usuário com envio de foto tanto pela câmera quanto pela galeria. No momento foram implementadas as classes de serviço, recursos (controller), repository e de domínio, com mapeamento objeto-relacional com JPA e foi criado a API REST com serialização JSON.
 
