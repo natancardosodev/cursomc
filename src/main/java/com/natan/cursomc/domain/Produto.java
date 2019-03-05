@@ -41,15 +41,15 @@ public class Produto implements Serializable{
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name="produto_id"),
-		inverseJoinColumns = @JoinColumn(name="caegoria_id")
+		inverseJoinColumns = @JoinColumn(name="categoria_id")
 	)
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore
 	// pq do outro lado têm-se itemPedido
 	@OneToMany(mappedBy="id.produto")
-	// Set é para evitar que não gaverá item repetido em pedido
-	// essa coleção foi iniciada para que Pedido conheça seus itens
+	// Set é para evitar que não haverá item repetido em pedido
+	// Essa coleção foi iniciada para que Pedido conheça seus itens
 	private Set<ItemPedido> itens = new HashSet<>();
 	
 	public Produto() {
