@@ -25,9 +25,9 @@ public class PedidoResource {
 	private PedidoService service;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> listar(@PathVariable Integer id) {
+	public ResponseEntity<Pedido> listar(@PathVariable Integer id) {
 		
-		Pedido obj = service.buscar(id);
+		Pedido obj = service.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 		// O ResponseEntity é um tipo especial do Spring que já
